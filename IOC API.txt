@@ -1,0 +1,412 @@
+Command :	Explaination : 	Example :
+I/OCoin version v5.0.0.0-g5729cf1		
+		
+		
+Usage :		
+		
+iocoind [options]		
+iocoind [options] <command> [params]	send command to -server or iocoind	
+iocoind [options] help	list commands	
+iocoind [options] help <command>	get help for a command	
+		
+Options :		
+		
+  -?	this help message	
+  -conf=<file>				specify configuration file (default:iocoin.conf)	
+  -pid=<file>				specify pid file (default: iocoind.pid)	
+  -datadir=<dir>			Specify data directory	
+  -wallet=<dir>	Specify			wallet file (within data directory)	
+  -dbcache=<n>   			Set database cache size in megabytes (default: 25)	
+  -dblogsize=<n>			Set database disk log size in megabytes (default: 100)	
+  -timeout=<n>          		Specify connection timeout in milliseconds (default: 5000)	
+  -proxy=<ip:port>       		Connect through socks proxy	
+  -socks=<n>             		Select the version of socks proxy to use (4-5, default: 5)	
+  -tor=<ip:port>         		Use proxy to reach tor hidden services (default: same as -proxy)	
+  -dns                  		Allow DNS lookups for -addnode, -seednode and -connect	
+  -port=<port>           		Listen for connections on <port> (default: 33764 or testnet: 43764)	
+  -maxconnections=<n>    		Maintain at most <n> connections to peers (default: 125)	
+  -addnode=<ip>          		Add a node to connect to and attempt to keep the connection open	
+  -connect=<ip>          		Connect only to the specified node(s)	
+  -seednode=<ip>         		Connect to a node to retrieve peer addresses, and disconnect	
+  -externalip=<ip>       		Specify your own public address	
+  -onlynet=<net>         		Only connect to nodes in network <net> (IPv4, IPv6 or Tor)	
+  -discover              		Discover own IP address (default: 1 when listening and no -externalip)	
+  -irc                   		Find peers using internet relay chat (default: 0)	
+  -listen    		            	Accept connections from outside (default: 1 if no -proxy or -connect)	
+  -bind=<addr>          		Bind to given address. Use [host]:port notation for IPv6	
+  -dnsseed              	 	Find peers using DNS lookup (default: 1)	
+  -synctime            		  	Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)	
+  -cppolicy            		 	Sync checkpoints policy (default: strict)	
+  -banscore=<n>				Threshold for disconnecting misbehaving peers (default: 100)	
+  -bantime=<n>				Number of seconds to keep misbehaving peers from reconnecting (default: 86400)	
+  -maxreceivebuffer=<n>			Maximum per-connection receive buffer, <n>*1000 bytes (default: 5000)	
+  -maxsendbuffer=<n>			Maximum per-connection send buffer, <n>*1000 bytes (default: 1000)	
+  -paytxfee=<amt>       		Fee per KB to add to transactions you send	
+  -mininput=<amt>     		   	When creating transactions, ignore inputs with value less than this (default: 0.01)	
+  -testnet               		Use the test network	
+  -viewwallet		               	view wallet only	
+  -debug                	 	Output extra debugging information. Implies all other -debug* options	
+  -debugnet              		Output extra network debugging information	
+  -logtimestamps         		Prepend debug output with timestamp	
+  -shrinkdebugfile		      	Shrink debug.log file on client startup (default: 1 when no -debug)	
+  -printtoconsole        		Send trace/debug info to console instead of debug.log file	
+  -printtodebugger		      	Send trace/debug info to debugger	
+  -rpcuser=<user>        		Username for JSON-RPC connections	
+  -rpcpassword=<pw>		      	Password for JSON-RPC connections	
+  -rpcport=<port>        		Listen for JSON-RPC connections on <port> (default: 33765 or testnet: 43765)	
+  -rpcallowip=<ip>      		Allow JSON-RPC connections from specified IP address	
+  -rpcconnect=<ip>       		Send commands to node running on <ip> (default: 127.0.0.1)	
+  -blocknotify=<cmd>     		Execute command when the best block changes (%s in cmd is replaced by block hash)	
+  -walletnotify=<cmd>    		Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)	
+  -zapwallettxes=<mode>			Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup  -confchange            Require a confirmations for change (default: 0)	
+  -enforcecanonical      		Enforce transaction scripts to use canonical PUSH operators (default: 1)	
+  -alertnotify=<cmd>     		Execute command when a relevant alert is received (%s in cmd is replaced by message)	
+  -upgradewallet         		Upgrade wallet to latest format	
+  -keypool=<n>           		Set key pool size to <n> (default: 100)	
+  -rescan                		Rescan the block chain for missing wallet transactions	
+  -xscan                		Rescan the block chain for aliases	
+  -salvagewallet         		Attempt to recover private keys from a corrupt wallet.dat	
+  -checkblocks=<n>       		How many blocks to check at startup (default: 2500, 0 = all)	
+  -checklevel=<n>        		How thorough the block verification is (0-6, default: 1)	
+  -loadblock=<file>      		Imports blocks from external blk000?.dat file	
+		
+Block creation options:		
+  -blockminsize=<n>      		Set minimum block size in bytes (default: 0)	
+  -blockmaxsize=<n>      		Set maximum block size in bytes (default: 250000)	
+  -blockprioritysize=<n>	 	Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)	
+		
+SSL options: (see the Bitcoin Wiki for SSL setup instructions)		
+  -rpcssl                                  	Use OpenSSL (https) for JSON-RPC connections	
+  -rpcsslcertificatechainfile=<file.cert>  	Server certificate file (default: server.cert)	
+  -rpcsslprivatekeyfile=<file.pem>         	Server private key (default: server.pem)	
+  -rpcsslciphers=<ciphers>                 	Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)	
+		
+		
+Stealth 2.0 :		
+		
+  -getinfo												Prints various information about the node and the network. 										getinfo {     "version" : "v5.0.0.0-g6b2edb9",     "protocolversion" : 60021,     "walletversion" : 60000,     "balance" : 0.51830000,     ... } 
+  -getblockcount											Get the current, latest synced, block the daemon is on.											getblockcount    1742667
+  -myrsakeys												Get a list of available wallet addresses and aliases attached to it.									myrsakeys [     {         "address" : "iVEcVcbaNGf755dYPsR1eKnAzZhdcmbepK",         "alias" : "NONE"     },     {         "address" : "ipFAdkYm9JD3UsoFCfUnCqHvKdGkDkDHsr",         "alias" : "dennuz666"     }, 
+  -checkwallet												Get the "health status" of the wallet. If you are missing coins or a RPC gone wrong you can check the status here.			checkwallet {     "mismatched spent coins" : 2,     "amount in que
+  -repairwallet												If wallet check fails (gives an error status) you can try repair the wallet with this RPC.						repairwallet {     "mismatched spent coins" : 2,     "amount affected by repair" : 0.49830000 
+  -alias "alias"											Registers a new encrypted alias and returns the transaction id. The alias remains valid at the time of writing for 
+													210000 blocks from any given update. Data fees are currently 0.01 IOC minimum plus 0.01 IOC for every 1KB.				alias "my alias" [     "aa5d7b8d74d9e69ef4d029dd12fe635bed91f388e3c026d10b8fc1715f925108" ] 
+  -decryptAlias "alias" "associated_address"								Decrypt an alias with associated key address. You can get the associated address by using the statusList RPC. 
+													Data fees for decrypting an alias are currently 0.01 IOC.										decryptAlias "myaliastodecrypt" ipmPfW87XWUGEGufivjfHxd1VWed35hfCG 7c63ebf7ed21a8583819b2f581f72d2bd7949f3d379537193d37d7013478a142 
+  -updateEncrypt "alias" "file_path"									The updateEncypt command associates data with the given (encrytped) alias. The data is extracted, compressed and 
+													encrypted on the blockchain using AES 256 encryption. You can check the encrypted status (boolean) of an alias 
+													in the wallet or use the ‘statusList’ command in the daemon. Data fees are currently 0.02 IOC.						updateEncrypt myalias C:\Users\username\Desktop\test.txt fade2f2c3bb2e2d0877266bd119e89fff73f841a96dff4c405cc7fbc25f477d6 
+  -downloadDecrypt "alias" "file_path" 									Downloading data is possible in two ways. You can download data by alias, just like you uploaded it. 
+													After an alias is expired (see ‘Alias Registration’ for more info about expiration) you can then download data 
+													with the private key from the expired alias with the ‘downloadDecryptEPID’ command. You can get the address of an 
+													alias by using the statusList RPC. 													downloadDecrypt myalias C:\Users\username\Desktop\test.txt     true
+  -downloadDecryptEPID "address" "file_path" 								See -downloadDecrypt "alias" "file_path"												downloadDecryptEPID ib388VZfBNnbrJv86PVXeeUwAF8BZdKKGs C:\Users\username\Desktop\test.txt true
+  -transferAlias "alias" "target" 									Transfer a given alias to the target address or alias. Data fees are currently 0.01 IOC							transferAlias myaliastodecrypt ikQHhA73EnmBsoV7ZBxrZYzPK5WtAM9UXR transferAlias myaliastotransfer targetalias
+  -transferEncryptedAlias "alias to transfer" "alias address to transfer" "target wallet address"	Transfer an encrypted alias over a channel. You can get the alias address by using the statuslist command. 
+													Data fees are currently 0.02 IOC.													transferEncryptedAlias myalias iWTgoUFgAyBCbAfbLB9qXQBn1RsHhHrWir ikQHhA73EnmBsoV7ZBxrZYzPK5WtAM9UXR     fade2f2c3bb2e2d0877266bd119e89fff73f841a96dff4c405cc7fbc25f477d6 
+  -sendPublicKey "address" "address" 									To send or receive an alias users would have to send an invite From Public alias (A) to Public alias (B) as in an rsa key exchange. 
+													This would initiate an encrypted tunnel, giving the ability to transfer aliases, but also initiate messaging between users.		sendPublicKey ipFAdkYm9JD3UsoFCfUnCqHvKdGkDkDHsr ifURRvG6asxQJauo9G8gGEfqnbYKzq3UYK [     "253fce5a099fe97322fcb39d6f5028a509d76405fea6852ac2d37cd5926ebc9f",< IH4+eeUgKHqElWBfk9OH5rEwHA2T8a+iuPqmDgKmmGgBO4QmEHXwBf7Rub4bATf1yXjX31rbQXe2dm2A47oDK B8= ] 
+  -statusList ["alias"] 										List all I/O Coin addresses that have RSA key pairs associated with them. You can check the status of an alias with this command 
+													by adding the optional alias parameter. The wallet needs to be unlocked. 								statusList myalias ]{     "alias" : "myalias",     "encrypted" : "true",     "address" : "iWmHymK9bDSQeAJmoFzafwiMRPbjyfHDfC",     "nHeigt" : 1733471,     "expires_in" : 209729,     "xtuVector" : "transform" }]
+  -sendMessage "from address" "message" "to address							Send an encrypted message over an established channel. Read ?Send Public Key? for setting up an established channel			sendMessage ipFAdkYm9JD3UsoFCfUnCqHvKdGkDkDHsr "Test" ifURRvG6asxQJauo9G8gGEfqnbYKzq3UYK     fade2f2c3bb2e2d0877266bd119e89fff73f841a96dff4c405cc7fbc25f477d6 }] 
+  -decryptedMessageList 										List the received encrypted messages. Encrypted messages are locally decrypted for viewing in plain text. Needs an unlocked wallet. 	decryptedMessageList [{     "sender" : "ipFAdkYm9JD3UsoFCfUnCqHvKdGkDkDHsr",     "recipient" : "ifURRvG6asxQJauo9G8gGEfqnbYKzq3UYK",     "encrypted_message" : "Klt7ch/FyubdWlGG6Jj1Xg==",     "time" : "2018-04-12 05:20:48 UTC",     "plain_text" : "Test",     "iv128Base64" : "vlYaWjucdK3aOtZGjZsK2g==",     "signature" : "H0ZJ43IefH6LeKzrLMiBMrfdQvnXSC013czsbAWF3NrbJIwVNL4+qdBLf5KCGVPBIVcjjqlVsNSFfipy0jD85+0=" }] 
+		
+		
+Stealth Group : 
+
+The following calls allow for stealth sending of funds to a so called stealth address hereafter known as ?shade ? address or simply a ?shade. Shades encapsulate what are known hereafter as abs and ord keys.
+
+  -shade 	Generates a shade address. The shade address is subsequently used by the receiver. 	     
+		           
+	OUTPUT  PARAMETERS 													iocoind shade
+	The abs key mi6Sv2ow1ywQgRF7P2ueH6U5Ykii1rCG8c 										[    "mi6Sv2ow1ywQgRF7P2ueH6U5Ykii1rCG8c",
+	The ord key mtqcQSz5vpqEa4fuQaH1gJxGy6K6RdRpYX 	 									"mtqcQSz5vpqEa4fuQaH1gJxGy6K6RdRpYX",
+	The resulting shade iH9fMZjDrVp8MY7S5cZcTTV5btT8zPnGYqnQx7BRjvm9 aySYXdJTfYtECMrr5eNgFvDT1JvTTY1SX1uigbBv2cjen Gm	"iH9fMZjDrVp8MY7S5cZcTTV5btT8zPnGYqnQx7BRjvm9aySYXdJTfYtECMrr5eNgFvDT1JvTTY1SX1uigbBv2cjenG m"]
+		
+  -shadesend <shade> <amount> 	MANDATORY  INPUT PARAMETERS                                                                     iocoind  shadesend  
+	shade (string) The target shade address for the stealth send                                                      	iH9fMZjDrVp8MY7S5cZcTTV5btT8zPnGYqnQx7BRjvm9aySYXdJTfYtECMrr5eNgFvDT1JvTTY1SX1uigbBv2cjenGm
+	amount (double) The amount to send                                                                                      10
+		
+	OUTPUT  INFORMATIONAL PARAMETERS           	
+	abs (string) The recovered abs key			     								[ {  "abs" : "mi6Sv2ow1ywQgRF7P2ueH6U5Ykii1rCG8c",
+	ord (string) The recovered ord key		        								"ord" : "mtqcQSz5vpqEa4fuQaH1gJxGy6K6RdRpYX",
+	target (string) The one-time end target receiving address								"target" : "mm9PnZRGWVRWAdiTxZTtWRbx42MCyUsgxW",
+	trace (string) The reference trace  key 	        								"trace" : "n1Xi7itgxnVgbAw7jA6WepMP26dMr5BJjQ",
+	txid (string) The transaction id 	        									"txid" : "b59acd8eb59cf753414e5e064a39041815fb3779a88f34120d06da148401d717" } ]
+
+
+Frontend CLI (ESC in wallet) :
+
+	
+	
+
+__vtx_s							__vtx_s <target> <scale>					Requires wallet passphrase to be set with walletpassphrase first
+addmultisigaddress					addmultisigaddress <nrequired> <'["key","key"]'> [account]	Add a nrequired-to-sign multisignature address to the wallet" each key is a I/OCoin address or hex-encoded public key If [account] is specified, assign address to [account]
+addredeemscript						addredeemscript <redeemScript> [account]			Add a P2SH address with a specified redeemScript to the wallet. If [account] is specified, assign address to [account]
+addresstodion						addresstodion <iocoinaddress>
+alias							registerAliasGenerate <alias>					Requires wallet passphrase to be set with walletpassphrase first
+aliasList						aliasList [<alias>]
+aliasList__						aliasList__ [<alias>]
+aliasOut						aliasOut [<node opt>]
+backupwallet						backupwallet <destination>					Safely copies wallet.dat to destination, which can be a directory or a path with filename.
+center__base__0						center [q] [r]
+checkwallet						Check wallet for integrity.
+crawgen							(frontend & deamon close???)
+createrawtransaction					createrawtransaction [{"txid":txid,"vout":n},...] {address:amount,...} Create a transaction spending given inputs (array of objects containing transaction id and output number), sending to given address(es). Returns hex-encoded raw transaction
+decoderawtransaction					decoderawtransaction <hex string> 				Return a JSON object representing the serialized, hex-encoded transaction.
+decodescript						Decode a hex-encoded script.
+decryptAlias						decryptAlias <alias> <address specified by owner> 		Requires wallet passphrase to be set with walletpassphrase first
+decryptedMessageList					decryptedMessageList [<alias>]
+downloadDecrypt						validate [<node opt>]
+downloadDecryptEPID					vEPID [<node opt>]
+dumpprivkey						dumpprivkey <iocoinaddress> 					Reveals the private key corresponding to <iocoinaddress>.
+dumpwallet						dumpwallet <filename> 						Dumps all wallet keys in a human-readable format.
+dumpwalletRT						dumpwalletRT <filename> 					Dumps all wallet keys in a human-readable format.
+encryptwallet						(unknown command)
+externFrame__						externFrame__ [<node opt>]
+getNodeRecord						getNodeRecord [<node opt>]
+getaccount						getaccount <iocoinaddress> 					Returns the account associated with the given address.
+getaccountaddress					getaccountaddress <account> 					Returns the current I/OCoin address for receiving payments to this account.
+getaddressesbyaccount					getaddressesbyaccount <account> 				Returns the list of addresses for the given account.
+getbalance						getbalance [account] [minconf=1] If [account] is not specified, returns the server's total available balance. If [account] is specified, returns the balance in the account.
+getbestblockhash					getbestblockhash 						Returns the hash of the best block in the longest block chain.
+getblock						getblock <hash> [txinfo] 					txinfo optional to print more detailed tx info Returns details of a block with given block-hash.
+getblockbynumber					getblockbynumber <number> [txinfo] 				txinfo optional to print more detailed tx info Returns details of a block with given block-number.
+getblockcount						getblockcount 							Returns the number of blocks in the longest block chain.
+getblockhash						getblockhash <index> 						Returns hash of block in best-block-chain at <index>.
+getblocktemplate					getblocktemplate [params]
+							Returns data needed to construct a block to work on:
+								  "version" 		: block version
+								  "previousblockhash" 	: hash of current highest block
+								  "transactions" 	: contents of non-coinbase transactions that should be included in the next block
+								  "coinbaseaux" 	: data that should be included in coinbase
+								  "coinbasevalue" 	: maximum allowable input to coinbase transaction, including the generation award and transaction fees
+								  "target" 		: hash target
+								  "mintime" 		: minimum timestamp appropriate for next block
+								  "curtime" 		: current timestamp
+								  "mutable" 		: list of ways the block template may be changed
+								  "noncerange" 		: range of valid nonces
+								  "sigoplimit" 		: limit of sigops in blocks
+								  "sizelimit" 		: limit of block size
+								  "bits" 		: compressed target of next block
+								  "height" 		: height of the next block
+							See https://en.bitcoin.it/wiki/BIP_0022 for full specification.
+getcheckpoint						getcheckpoint	Show info of synchronized checkpoint.
+getconnectioncount					getconnectioncount						Returns the number of connections to other nodes.
+getdifficulty						getdifficulty							Returns the difficulty as a multiple of the minimum difficulty.
+getencryptionstatus					getenryptionstatus						Returns whether the wallet is encrypted.
+getinfo							getinfo 							Returns an object containing various state info.
+getmininginfo						getmininginfo							Returns an object containing mining-related information.
+getnetworkmhashps					getnetworkhashps [blocks] [height]				Returns the estimated network hashes per second based on the last 120 blocks. Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change. Pass in [height] to estimate the network speed at the time when a certain block was found.
+getnewaddress						getnewaddress [account]						Returns a new I/OCoin address for receiving payments.  If [account] is specified, it is added to the address book so payments received with the address will be credited to [account].
+getnewpubkey						getnewpubkey [account]						Returns new public key for coinbase generation.
+getnumblocksofpeers					getnumblocksofpeers 						Return maximum number of blocks that other nodes claim to have
+getpeerinfo						getpeerinfo							Returns data about each connected network node.
+getpowblocks						getpowblocks [block]						Returns the number of PoW blocks mined in the longest block chain at height `block`, defaults to best height.
+getpowblocksleft					getpowblocksleft [block]					Returns the number of PoW blocks left for mining in the longest block chain at height `block`, defaults to best height..
+getpowtimeleft						getpowtimeleft [time-unit] [block]				Returns the number of PoW blocks left for mining in the longest block chain at height `block`, defaults to best height..
+getrawmempool						getrawmempool							Returns all transaction ids in memory pool.
+getrawtransaction					getrawtransaction <txid> [verbose=0] 				If verbose=0, returns a string that is serialized, hex-encoded data for <txid>. If verbose is non-zero, returns an Object with information about <txid>.
+getreceivedbyaccount					getreceivedbyaccount <account> [minconf=1]			Returns the total amount received by addresses with <account> in transactions with at least [minconf] confirmations.
+getreceivedbyaddress					getreceivedbyaddress <iocoinaddress> [minconf=1]		Returns the total amount received by <iocoinaddress> in transactions with at least [minconf] confirmations.
+getstakinginfo						getstakinginfo							Returns an object containing staking-related information.
+getsubsidy						getsubsidy [nTarget]						Returns proof-of-work subsidy value for the specified value of target.
+gettransaction						gettransaction <txid>						Get detailed information about <txid>
+gettxout						gettxout "txid" n ( includemempool )
+							Returns details about an unspent transaction output.
+															Arguments:
+															1. "txid"       (string, required) The transaction id
+															2. n              (numeric, required) vout value
+															3. includemempool  (boolean, optional) Whether to included the mem pool
+															Result:
+															{
+															  "bestblock" : "hash",    (string) the block hash
+															  "confirmations" : n,       (numeric) The number of confirmations
+															  "value" : x.xxx,           (numeric) The transaction value in btc
+															  "scriptPubKey" : {         (json object)
+									    						  "asm" : "code",       (string) 
+									 						  "hex" : "hex",        (string) 
+									 						  "reqSigs" : n,          (numeric) Number of required signatures
+									    						  "type" : "pubkeyhash", (string) The type, eg pubkeyhash
+									  						  "addresses" : [          (array of string) array of bitcoin addresses
+															  "bitcoinaddress"     (string) bitcoin address
+														        ,...
+															]},
+															  "version" : n,            (numeric) The version
+															  "coinbase" : true|false   (boolean) Coinbase or not
+															  "coinstake" : true|false  (boolean) Coinstake or not}
+getwork							getwork [data]
+															If [data] is not specified, returns formatted hash data to work on:
+															  "midstate" : precomputed hash state after hashing the first half of the data (DEPRECATED)
+															  "data" : block data
+															  "hash1" : formatted hash buffer for second hash (DEPRECATED)
+															  "target" : little endian hash target If [data] is specified, tries to solve the block and returns true if it was successful.
+getworkex						getworkex [data, coinbase]					If [data, coinbase] is not specified, returns extended work data.
+gra							gra <iocoinaddress> [minconf=1]					Returns the total amount received by <iocoinaddress> in transactions with at least [minconf] confirmations.
+gw1							
+help							help <command>							Show help about the <command>
+importprivkey						importprivkey <iocoinprivkey> [label]				Adds a private key (as returned by dumpprivkey) to your wallet.
+importwallet						importwallet <filename>						Imports keys from a wallet dump file (see dumpwallet).
+importwalletRT						importwalletRT <filename>					Imports keys from a wallet dump file (see dumpwallet).
+internFrame__						internFrame__ [<node opt>]
+ioget							psimplex <base> <is>						Requires wallet passphrase to be set with walletpassphrase first
+keypoolrefill						keypoolrefill [new-size]					Fills the keypool. Requires wallet passphrase to be set with walletpassphrase first
+listaccounts						listaccounts [minconf=1]					Returns Object that has account names as keys, account balances as values.
+listaddressgroupings					listaddressgroupings 						Lists groups of addresses which have had their common ownership made public by common use as inputs or as the resulting change in past transactions
+listreceivedbyaccount					listreceivedbyaccount [minconf=1] [includeempty=false]
+															[minconf] is the minimum number of confirmations before payments are included.
+															[includeempty] whether to include accounts that haven't received any payments.
+															Returns an array of objects containing:
+															  "account" : the account of the receiving addresses
+															  "amount" : total amount received by addresses with this account
+															  "confirmations" : number of confirmations of the most recent transaction includ
+listreceivedbyaddress					listreceivedbyaddress [minconf=1] [includeempty=false]
+															[minconf] is the minimum number of confirmations before payments are included.
+															[includeempty] whether to include addresses that haven't received any payments.
+															Returns an array of objects containing:
+															  "address" : receiving address
+															  "account" : the account of the receiving address
+															  "amount" : total amount received by the address
+															  "confirmations" : number of confirmations of the most recent transaction included
+listsinceblock						listsinceblock [blockhash] [target-confirmations]		Get all transactions in blocks since block [blockhash], or all transactions if omitted
+listtransactions					listtransactions [account] [count=10] [from=0]			Returns up to [count] most recent transactions skipping the first [from] transactions for account [account].
+listtransactions__					listtransactions [account] [count=10] [from=0]			Returns up to [count] most recent transactions skipping the first [from] transactions for account [account].
+listunspent						listunspent [minconf=1] [maxconf=9999999]  ["address",...]
+															Returns array of unspent transaction outputs
+															with between minconf and maxconf (inclusive) confirmations.
+															Optionally filtered to only include txouts paid to specified addresses.
+															Results are an array of Objects, each of which has:
+															{txid, vout, scriptPubKey, amount, confirmations}
+makekeypair						makekeypair [prefix]						Make a public/private key pair. [prefix] is optional preferred prefix for the public key.
+mapProject						mapProject <addr> <project> <addr>
+mapVertex						mapVertex <addr> <addr>
+move							move <fromaccount> <toaccount> <amount> [minconf=1] [comment]	Move from one account in your wallet to another.
+myRSAKeys						list my rsa keys 
+nodeDebug						Dump pending transactions id in the debug file.
+nodeDebug1						nodeDebug1 <alias> Dump alias blocks number and transactions id in the debug file.
+nodeRetrieve						nodeRetrieve [<node opt>]
+nodeValidate						nodeValidate [<node opt>]
+pending							pending [account] [minconf=1]
+															If [account] is not specified, returns the server's total available balance.
+															If [account] is specified, returns the balance in the account.
+plainTextMessageList					plainTextMessageList [<alias>]
+primaryCXValidate					primaryCXValidate <alias> <predicate> <l1_internal>		Requires wallet passphrase to be set with walletpassphrase first
+projection						projection [<alias>]
+psimplex						psimplex <base> <is>						Requires wallet passphrase to be set with walletpassphrase first
+publicKey						publicKey <public_address>					Requires wallet passphrase to be set with walletpassphrase first
+publicKeyExports					publicKeyExports [<alias>]					list exported public keys publicKeys
+publicKeys						publicKeys [<alias>]
+registerAlias						registerAlias <alias> <address>					Requires wallet passphrase to be set with walletpassphrase first
+registerAliasGenerate					registerAliasGenerate <alias>					Requires wallet passphrase to be set with walletpassphrase first
+repairwallet						Repair wallet if checkwallet reports any problem.
+resendtx						resendtx							Re-send unconfirmed transactions.
+reservebalance						reservebalance [<reserve> [amount]]
+															<reserve> is true or false to turn balance reserve on or off.
+															<amount> is a real and rounded to cent.
+															Set reserve amount not participating in network protection.
+															If no parameters provided current setting is printed.
+rmtx							rmtx txid							Removes transaction id from memory pool.
+sa							sa <iocoinaddress> <account>					Sets the account associated with the given address.
+sectionlog						sectionlog [sign] [primitive]
+sendMessage						sendMessage <addr> <message> <addr>				Requires wallet passphrase to be set with walletpassphrase first
+sendPlainMessage					sendPlainMessage <sender_address> <message> <recipient_address>	Requires wallet passphrase to be set with walletpassphrase first
+sendPublicKey						sendPublicKey <addr> <addr>					Requires wallet passphrase to be set with walletpassphrase first
+sendSymmetric						sendSymmetric <sender> <recipient>				Requires wallet passphrase to be set with walletpassphrase first
+sendalert						sendalert <message> <privatekey> <minver> <maxver> <priority> <id> [cancelupto] [expiredelta]
+															<message> is the alert text message
+															<privatekey> is hex string of alert master private key
+															<minver> is the minimum applicable internal client version
+															<maxver> is the maximum applicable internal client version
+															<priority> is integer priority number
+															<id> is the alert id
+															[cancelupto] cancels all alert id's up to this number
+															[expiredelta] after this many seconds, the alert will expire
+															Returns true or false.
+sendfrom						sendfrom <fromaccount> <toiocoinaddress> <amount> [minconf=1] [comment] [comment-to] [info-for-receiver]
+															<amount> is a real and is rounded to the nearest 0.000001
+															Requires wallet passphrase to be set with walletpassphrase first
+sendmany						sendmany <fromaccount> {address:amount,...} [minconf=1] [comment] [info-for-receiver]
+															amounts are double-precision floating point numbers
+															Requires wallet passphrase to be set with walletpassphrase first
+sendrawtransaction					sendrawtransaction <hex string>					Submits raw transaction (serialized, hex-encoded) to local node and network.
+sendtoaddress						sendtoaddress <iocoinaddress> <amount> [comment] [comment-to] [info-for-receiver]
+															<amount> is a real and is rounded to the nearest 0.000001
+															Requires wallet passphrase to be set with walletpassphrase first
+sendtodion						sendtodion <iocoinaddress> <amount> [comment] [comment-to] [info-for-receiver]
+															<amount> is a real and is rounded to the nearest 0.000001
+															Requires wallet passphrase to be set with walletpassphrase first
+setaccount						setaccount <iocoinaddress> <account>				Sets the account associated with the given address.
+settxfee						settxfee <amount>						<amount> is a real and is rounded to the nearest 0.01
+shade							shade [account] [ray id]
+shadesend						shadesend <shade> <amount>					Requires wallet passphrase to be set with walletpassphrase first
+signmessage						signmessage <iocoinaddress> <message>				Sign a message with the private key of an address
+signrawtransaction					signrawtransaction <hex string> [{"txid":txid,"vout":n,"scriptPubKey":hex},...] [<privatekey1>,...] [sighashtype="ALL"]
+															Sign inputs for raw transaction (serialized, hex-encoded).
+															Second optional argument (may be null) is an array of previous transaction outputs that
+															this transaction depends on but may not yet be in the blockchain.
+															Third optional argument (may be null) is an array of base58-encoded private
+															keys that, if given, will be the only keys used to sign the transaction.
+															Fourth optional argument is a string that is one of six values; ALL, NONE, SINGLE or
+															ALL|ANYONECANPAY, NONE|ANYONECANPAY, SINGLE|ANYONECANPAY.
+															Returns json object with keys:
+															  hex : raw transaction with signature(s) (hex-encoded string)
+															  complete : 1 if transaction has a complete set of signature (0 if not)
+															Requires wallet passphrase to be set with walletpassphrase first
+simplexU						simplexU <base> <forward>					Requires wallet passphrase to be set with walletpassphrase first
+sr71							sr71 tunnel list
+statusList						aliasList__ [<alias>]
+stop							stop								Stop I/OCoin server.
+sublimateYdwi						sublimateYdwi <ydwi f>
+								 stat <ydwi f>
+submitblock						submitblock <hex data> [optional-params-obj]
+															[optional-params-obj] parameter is currently ignored.
+															Attempts to submit new block to network.
+															See https://en.bitcoin.it/wiki/BIP_0022 for full specification.
+svtx							svtx[<alias>]
+tmpTest							tmpTest [data]
+															If [data] is not specified, returns formatted hash data to work on:
+															  "midstate" : precomputed hash state after hashing the first half of the data (DEPRECATED)	
+															  "data" : block data
+															  "hash1" : formatted hash buffer for second hash (DEPRECATED)
+															  "target" : little endian hash target
+															If [data] is specified, tries to solve the block and returns true if it was successful.
+transferAlias						transferAlias <alias> <toaddress>				Requires wallet passphrase to be set with walletpassphrase first
+transferEncryptedAlias					transferEncryptedAlias <alias> <predicate> <l1_internal>	Requires wallet passphrase to be set with walletpassphrase first
+transferEncryptedExtPredicate				transferEncryptedExtPredicate <alias> <predicate> <l0> <l1>	Requires wallet passphrase to be set with walletpassphrase first
+transform						aliasOut [<node opt>]
+transientStatus__					transientStatus__ <locator> <file>				Requires wallet passphrase to be set with walletpassphrase first
+transientStatus__C					transientStatus__C <locator> <file>				Requires wallet passphrase to be set with walletpassphrase first
+uC							uC <url> <value>						Requires wallet passphrase to be set with walletpassphrase first
+updateAlias						updateAlias <alias> <value> [<toaddress>]			Update and possibly transfer a alias
+															Requires wallet passphrase to be set with walletpassphrase first
+updateAliasFile						updateAlias <alias> <value> [<toaddress>] update or transfer	Requires wallet passphrase to be set with walletpassphrase first
+updateEncrypt						uC <url> <value>						Requires wallet passphrase to be set with walletpassphrase first
+updateEncryptedAlias					updateEncryptedAlias <alias> <value> <address>			Requires wallet passphrase to be set with walletpassphrase first
+updateEncryptedAliasFile				updateEncryptedAlias <locator> <file>				Requires wallet passphrase to be set with walletpassphrase first
+validate						validate [<node opt>]
+validateLocator						validateLocator <locator>					Return information about <locator>
+validateaddress						validateaddress <iocoinaddress>					Return information about <iocoinaddress>
+validatepubkey						validatepubkey <iocoinpubkey>					Return information about <iocoinpubkey>
+verifymessage						verifymessage <iocoinaddress> <signature> <message>		Verify a signed message
+vtx							vtx <addr>
+vtxtrace						vtxtrace [<alias>]
+walletlock														Removes the wallet encryption key from memory, locking the wallet.
+															After calling this method, you will need to call walletpassphrase again
+															before being able to call any methods which require the wallet to be unlocked
+walletlockstatus					(unknown command)
+walletpassphrase					walletpassphrase <passphrase> <timeout> [stakingonly]		Stores the wallet decryption key in memory for <timeout> seconds.
+															if [stakingonly] is true sending functions are disabled.
+walletpassphrasechange					walletpassphrasechange <oldpassphrase> <newpassphrase>		Changes the wallet passphrase from <oldpassphrase> to <newpassphrase>.
+xstat							xstat <addr>
+xtu_url							xtu eval <url>
+							return xtu eval url
+ydwiWhldw_base_diff					(unknown command)	
+
+
+
+
+
+
+
+
+
