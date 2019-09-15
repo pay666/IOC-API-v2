@@ -1,6 +1,4 @@
-Command :	Explaination : 	Example :
 I/OCoin version v5.0.0.0-g5729cf1		
-		
 		
 Usage :		
 		
@@ -95,10 +93,10 @@ Stealth 2.0 :
 													Data fees for decrypting an alias are currently 0.01 IOC.										decryptAlias "myaliastodecrypt" ipmPfW87XWUGEGufivjfHxd1VWed35hfCG 7c63ebf7ed21a8583819b2f581f72d2bd7949f3d379537193d37d7013478a142 
   -updateEncrypt "alias" "file_path"									The updateEncypt command associates data with the given (encrytped) alias. The data is extracted, compressed and 
 													encrypted on the blockchain using AES 256 encryption. You can check the encrypted status (boolean) of an alias 
-													in the wallet or use the ‘statusList’ command in the daemon. Data fees are currently 0.02 IOC.						updateEncrypt myalias C:\Users\username\Desktop\test.txt fade2f2c3bb2e2d0877266bd119e89fff73f841a96dff4c405cc7fbc25f477d6 
+													in the wallet or use the â€˜statusListâ€™ command in the daemon. Data fees are currently 0.02 IOC.						updateEncrypt myalias C:\Users\username\Desktop\test.txt fade2f2c3bb2e2d0877266bd119e89fff73f841a96dff4c405cc7fbc25f477d6 
   -downloadDecrypt "alias" "file_path" 									Downloading data is possible in two ways. You can download data by alias, just like you uploaded it. 
-													After an alias is expired (see ‘Alias Registration’ for more info about expiration) you can then download data 
-													with the private key from the expired alias with the ‘downloadDecryptEPID’ command. You can get the address of an 
+													After an alias is expired (see â€˜Alias Registrationâ€™ for more info about expiration) you can then download data 
+													with the private key from the expired alias with the â€˜downloadDecryptEPIDâ€™ command. You can get the address of an 
 													alias by using the statusList RPC. 													downloadDecrypt myalias C:\Users\username\Desktop\test.txt     true
   -downloadDecryptEPID "address" "file_path" 								See -downloadDecrypt "alias" "file_path"												downloadDecryptEPID ib388VZfBNnbrJv86PVXeeUwAF8BZdKKGs C:\Users\username\Desktop\test.txt true
   -transferAlias "alias" "target" 									Transfer a given alias to the target address or alias. Data fees are currently 0.01 IOC							transferAlias myaliastodecrypt ikQHhA73EnmBsoV7ZBxrZYzPK5WtAM9UXR transferAlias myaliastotransfer targetalias
